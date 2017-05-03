@@ -45,7 +45,7 @@ describe('The `$Promise` class', function(){
     expect( typeof $Promise ).toBe( 'function' );
   });
 
-  xit('returns a new promise instance', function(){
+  it('returns a new promise instance', function(){
     var promise = new $Promise();
     expect( promise instanceof $Promise ).toBe( true );
   });
@@ -66,18 +66,18 @@ describe('A promise instance', function(){
   // common convention is to use a naming scheme to mark a method as "private".
   // Beginning methods with an `._underscore` is one such signal.
 
-  xit('starts with "pending" internal state', function(){
+  it('starts with "pending" internal state', function(){
     expect( promise._state ).toBe( 'pending' );
   });
 
   // NOTE — promises are NOT supposed to have public resolver and rejector
   // methods. However, hiding this implementation detail can be tricky.
 
-  xit('has an `._internalResolve` instance method', function () {
+  it('has an `._internalResolve` instance method', function () {
     expect( typeof promise._internalResolve ).toBe( 'function' );
   });
 
-  xit('has an `._internalReject` instance method', function () {
+  it('has an `._internalReject` instance method', function () {
     expect( typeof promise._internalReject ).toBe( 'function' );
     expect( promise._internalReject ).not.toBe( promise._internalResolve );
   });
@@ -86,7 +86,7 @@ describe('A promise instance', function(){
 
   describe('resolving', function(){
 
-    xit('changes the promise state to "fulfilled"', function(){
+    it('changes the promise state to "fulfilled"', function(){
 
       // Why not "resolved"? This will be covered in detail in Ch. 5, but
       // for now just know that strict P/A+ terminology draws a distinction
@@ -98,7 +98,7 @@ describe('A promise instance', function(){
       expect( promise._state ).toBe( 'fulfilled' );
     });
 
-    xit('can send data to the promise for storage', function(){
+    it('can send data to the promise for storage', function(){
       var someData = { name: 'Harry Potter' };
       promise._internalResolve( someData );
       expect( promise._value ).toBe( someData );
@@ -106,7 +106,7 @@ describe('A promise instance', function(){
 
     // Hint: use the pending status.
 
-    xit('does not affect an already-fulfilled promise', function(){
+    it('does not affect an already-fulfilled promise', function(){
       var data1 = { name: 'Harry Potter' };
       var data2 = { name: 'Gandalf' };
       promise._internalResolve( data1 );
@@ -114,7 +114,7 @@ describe('A promise instance', function(){
       expect( promise._value ).toBe( data1 );
     });
 
-    xit('works even with falsey values', function(){
+    it('works even with falsey values', function(){
       var data1; // undefined; could also work with null, 0, false, etc.
       var data2 = 'oops!';
       promise._internalResolve( data1 );
